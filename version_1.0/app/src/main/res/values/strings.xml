@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">HighLowAndroid</string>
+    <string name="app_name">High Low Card Game</string>
+    <string name="instructions">To play: just click the button marked \'Play High Low Game\'.</string>
+    <string name="play_button_text">Play High Low Game</string>
 </resources>
