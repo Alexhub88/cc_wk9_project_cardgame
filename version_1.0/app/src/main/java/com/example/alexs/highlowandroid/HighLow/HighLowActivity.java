@@ -1,5 +1,6 @@
 package com.example.alexs.highlowandroid.HighLow;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -34,7 +35,6 @@ public class HighLowActivity extends AppCompatActivity {
 
         instructions = findViewById(R.id.instructionsTextViewID);
         playButton = findViewById(R.id.playButtonID);
-        result = findViewById(R.id.resultTextViewID);
 
         deck = new Deck();
         hand1 = new Hand();
@@ -58,8 +58,15 @@ public class HighLowActivity extends AppCompatActivity {
             winnerName = "Player 2";
         }
 
-        displayGameResult = "Player 1: " + player1.getHand().getCards().get(0).prettyName() + ", " + player1.getHand().getCards().get(1).prettyName() + "\n\n" + "Player 2: " + player2.getHand().getCards().get(0).prettyName() + ", " + player2.getHand().getCards().get(1).prettyName() + "\n\n" + winnerName + " wins!";
+        displayGameResult = "Player 1: " + player1.getHand().getCards().get(0).prettyName()
+                + ", " + player1.getHand().getCards().get(1).prettyName()
+                + "\n\n" + "Player 2: " + player2.getHand().getCards().get(0).prettyName()
+                + ", " + player2.getHand().getCards().get(1).prettyName()
+                + "\n\n\n" + winnerName.toUpperCase() + " WINS!!";
 
-        result.setText(displayGameResult);
+        Intent intent = new Intent(this, GameResultActivity.class);
+        intent.putExtra("displayGameResult", displayGameResult);
+        startActivity(intent);
+
     }
 }
