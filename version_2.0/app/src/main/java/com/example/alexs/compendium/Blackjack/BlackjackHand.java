@@ -1,21 +1,19 @@
 package com.example.alexs.compendium.Blackjack;
 
-import com.example.alexs.compendium.HighLow.Card;
-
 import java.util.ArrayList;
 
-public class Hand {
+public class BlackjackHand {
 
-    private ArrayList<Card> cards;
+    private ArrayList<BlackjackCard> cards;
     private int value;
 
-    public Hand() {
-        this.cards = new ArrayList<Card>();
+    public BlackjackHand() {
+        this.cards = new ArrayList<BlackjackCard>();
         value = 0;
     }
 
-    public ArrayList<Card> getCards() {
-        return new ArrayList<Card>(this.cards);
+    public ArrayList<BlackjackCard> getCards() {
+        return new ArrayList<BlackjackCard>(this.cards);
     }
 
     public int getHandValue() {
@@ -26,7 +24,7 @@ public class Hand {
         return this.cards.size();
     }
 
-    public void addCard(Card card) {
+    public void addCard(BlackjackCard card) {
         this.cards.add(card);
         this.value += card.getValue();
     }

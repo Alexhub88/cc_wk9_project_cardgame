@@ -8,9 +8,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-import com.example.alexs.compendium.HighLow.Deck;
-import com.example.alexs.compendium.HighLow.Hand;
-
 import com.example.alexs.compendium.R;
 
 
@@ -32,13 +29,13 @@ public class BlackjackGameActivity extends AppCompatActivity {
     private Button playerStandButton;
     private Button playerHitButton;
 
-    private Deck deck;
-    private Hand dealerHand;
-    private Hand playerHand;
-    private Player dealer;
-    private Player player;
-    private Game game;
-    private ArrayList<Player> playerList;
+    private BlackjackDeck deck;
+    private BlackjackHand dealerHand;
+    private BlackjackHand playerHand;
+    private BlackjackPlayer dealer;
+    private BlackjackPlayer blackjackPlayer;
+    private BlackjackGame game;
+    private ArrayList<BlackjackPlayer> blackjackPlayerList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,15 +50,15 @@ public class BlackjackGameActivity extends AppCompatActivity {
         playerStandButton = findViewById(R.id.playerStandButtonID);
         playerHitButton = findViewById(R.id.playerHitButtonID);
 
-        deck = new Deck();
-        dealerHand = new Hand();
-        playerHand = new Hand();
-        player = new Player("Player 1", playerHand, true);
-        dealer = new Player("Dealer", dealerHand, true);
-        playerList = new ArrayList<>();
-        playerList.add(player);
-        playerList.add(dealer);
-        game = new Game(deck, playerList);
+        deck = new BlackjackDeck();
+        dealerHand = new BlackjackHand();
+        playerHand = new BlackjackHand();
+        blackjackPlayer = new BlackjackPlayer("BlackjackPlayer 1", playerHand, true);
+        dealer = new BlackjackPlayer("Dealer", dealerHand, true);
+        blackjackPlayerList = new ArrayList<>();
+        blackjackPlayerList.add(blackjackPlayer);
+        blackjackPlayerList.add(dealer);
+        game = new BlackjackGame(deck, blackjackPlayerList);
         game.deal();
 
         playerScoreView.setText("PLAYER 1 SCORE: " + game.getPlayerAtPosition(0).getHandValue());
@@ -70,14 +67,14 @@ public class BlackjackGameActivity extends AppCompatActivity {
     public void onActionButtonClick(View view) {
         switch (view.getId()) {
             case R.id.playerHitButtonID:
-                Log.d("Blackjack", "Player Hits");
+                Log.d("Blackjack", "BlackjackPlayer Hits");
                 play(Action.HIT);
                 if (!game.getPlayerAtPosition(0).getIsPlayerActive()) {
                     dealerPlays();
                 }
                 break;
             case R.id.playerStandButtonID:
-                Log.d("Blackjack", "Player Stands");
+                Log.d("Blackjack", "BlackjackPlayer Stands");
                 play(Action.STAND);
                 dealerPlays();
                 break;

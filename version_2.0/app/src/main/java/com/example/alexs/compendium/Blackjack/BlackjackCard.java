@@ -1,14 +1,11 @@
 package com.example.alexs.compendium.Blackjack;
 
-import com.example.alexs.compendium.Blackjack.Rank;
-import com.example.alexs.compendium.Blackjack.Suit;
-
-public class Card {
+public class BlackjackCard {
 
     private Suit suit;
-    private Rank rank;
+    private BlackjackRank rank;
 
-    public Card(Suit suit, Rank rank) {
+    public BlackjackCard(Suit suit, BlackjackRank rank) {
         this.suit = suit;
         this.rank = rank;
     }
@@ -17,7 +14,7 @@ public class Card {
         return suit;
     }
 
-    public Rank getRank() {
+    public BlackjackRank getRank() {
         return rank;
     }
 

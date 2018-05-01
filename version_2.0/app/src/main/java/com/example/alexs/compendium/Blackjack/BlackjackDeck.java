@@ -1,17 +1,13 @@
 package com.example.alexs.compendium.Blackjack;
 
-import com.example.alexs.compendium.Blackjack.Card;
-import com.example.alexs.compendium.Blackjack.Rank;
-import com.example.alexs.compendium.Blackjack.Suit;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Deck {
+public class BlackjackDeck {
 
-    private ArrayList<Card> cards;
+    private ArrayList<BlackjackCard> cards;
 
-    public Deck() {
+    public BlackjackDeck() {
         cards = new ArrayList<>();
         generateDeck();
         shuffle();
@@ -23,8 +19,8 @@ public class Deck {
 
     private void generateDeck(){
         for(Suit suit : Suit.values()){
-            for(Rank rank : Rank.values()){
-                cards.add(new Card(suit, rank));
+            for(BlackjackRank rank : BlackjackRank.values()){
+                cards.add(new BlackjackCard(suit, rank));
             }
         }
     }
@@ -33,7 +29,7 @@ public class Deck {
         Collections.shuffle(cards);
     }
 
-    public Card getCard(){
+    public BlackjackCard getCard(){
         return cards.remove(0);
     }
 }

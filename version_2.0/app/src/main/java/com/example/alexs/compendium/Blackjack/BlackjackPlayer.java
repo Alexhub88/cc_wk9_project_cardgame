@@ -1,23 +1,13 @@
 package com.example.alexs.compendium.Blackjack;
 
-import android.text.Selection;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-
-import com.example.alexs.compendium.HighLow.Card;
-import com.example.alexs.compendium.HighLow.Hand;
-import com.example.alexs.compendium.R;
-
-public class Player {
+public class BlackjackPlayer {
 
     private String name;
-    private Hand hand;
+    private BlackjackHand hand;
     private boolean isPlayerActive;
 
 
-    public Player(String name, Hand hand, boolean isPlayerActive) {
+    public BlackjackPlayer(String name, BlackjackHand hand, boolean isPlayerActive) {
         this.name = name;
         this.hand = hand;
         this.isPlayerActive = isPlayerActive;
@@ -27,7 +17,7 @@ public class Player {
         return name;
     }
 
-    public Hand getHand() {
+    public BlackjackHand getHand() {
         return hand;
     }
 
@@ -43,7 +33,7 @@ public class Player {
         return this.hand.getHandValue();
     }
 
-    public void addCardToHand(Card card) {
+    public void addCardToHand(BlackjackCard card) {
         this.hand.addCard(card);
     }
 

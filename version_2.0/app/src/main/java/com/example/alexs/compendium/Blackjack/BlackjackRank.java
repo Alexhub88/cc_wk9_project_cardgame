@@ -1,6 +1,6 @@
 package com.example.alexs.compendium.Blackjack;
 
-public enum Rank {
+public enum BlackjackRank {
 
     ACE(11, "Ace"),
     TWO(2, "Two"),
@@ -19,7 +19,7 @@ public enum Rank {
     private int value;
     private String name;
 
-    Rank(int value, String name) {
+    BlackjackRank(int value, String name) {
         this.value = value;
         this.name = name;
     }
