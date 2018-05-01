@@ -6,17 +6,17 @@ import java.util.Random;
 public class BlackjackGame {
 
     private BlackjackDeck deck;
-    private ArrayList<BlackjackPlayer> blackjackPlayers;
+    private ArrayList<BlackjackPlayer> players;
 
-    public BlackjackGame(BlackjackDeck deck, ArrayList<BlackjackPlayer> blackjackPlayers) {
+    public BlackjackGame(BlackjackDeck deck, ArrayList<BlackjackPlayer> players) {
         this.deck = deck;
-        this.blackjackPlayers = blackjackPlayers;
+        this.players = players;
     }
 
     public void deal(){
-        for (BlackjackPlayer blackjackPlayer : blackjackPlayers){
+        for (BlackjackPlayer player : players){
             for(int i = 0; i<2; i++) {
-                blackjackPlayer.addCardToHand(deck.getCard());
+                player.addCardToHand(deck.getCard());
             }
         }
     }
@@ -29,34 +29,36 @@ public class BlackjackGame {
     }
 
     public BlackjackPlayer checkWinner(){
-        BlackjackPlayer blackjackPlayer = blackjackPlayers.get(0);
-        BlackjackPlayer dealer = blackjackPlayers.get(1);
+        BlackjackPlayer player = players.get(0);
+        BlackjackPlayer dealer = players.get(1);
 
-        if (blackjackPlayer.getHandValue() > 21) return dealer;
+        if (player.getHandValue() > 21) return dealer;
 
-        if (blackjackPlayer.getHandValue() <= 21 && dealer.getHandValue() > 21) return blackjackPlayer;
+        if (player.getHandValue() <= 21 && dealer.getHandValue() > 21) return player;
 
-        if (blackjackPlayer.getHandValue() == dealer.getHandValue()){
+        if (player.getHandValue() == 21 && dealer.getHandValue() == 21) return dealer;
+
+        if (player.getHandValue() == dealer.getHandValue()){
             return null;
         } else {
-            return blackjackPlayer.getHandValue() > dealer.getHandValue() ? blackjackPlayer :  dealer;
+            return player.getHandValue() > dealer.getHandValue() ? player :  dealer;
         }
     }
 
     public void dealCardToPlayer (int position){
 
-        BlackjackPlayer blackjackPlayer = blackjackPlayers.get(position);
-        blackjackPlayer.addCardToHand(deck.getCard());
-        blackjackPlayers.set(position, blackjackPlayer);
+        BlackjackPlayer player = players.get(position);
+        player.addCardToHand(deck.getCard());
+        players.set(position, player);
 
     }
 
     public BlackjackPlayer getPlayerAtPosition(int position){
-        return blackjackPlayers.get(position);
+        return players.get(position);
     }
 
-    public void setPlayerAtPosition(int position, BlackjackPlayer blackjackPlayer){
-        blackjackPlayers.set(position, blackjackPlayer);
+    public void setPlayerAtPosition(int position, BlackjackPlayer player){
+        players.set(position, player);
     }
 
 

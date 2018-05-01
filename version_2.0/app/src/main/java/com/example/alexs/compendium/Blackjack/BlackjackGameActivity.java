@@ -33,9 +33,9 @@ public class BlackjackGameActivity extends AppCompatActivity {
     private BlackjackHand dealerHand;
     private BlackjackHand playerHand;
     private BlackjackPlayer dealer;
-    private BlackjackPlayer blackjackPlayer;
+    private BlackjackPlayer player;
     private BlackjackGame game;
-    private ArrayList<BlackjackPlayer> blackjackPlayerList;
+    private ArrayList<BlackjackPlayer> playerList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,28 +53,32 @@ public class BlackjackGameActivity extends AppCompatActivity {
         deck = new BlackjackDeck();
         dealerHand = new BlackjackHand();
         playerHand = new BlackjackHand();
-        blackjackPlayer = new BlackjackPlayer("BlackjackPlayer 1", playerHand, true);
+        player = new BlackjackPlayer("Player 1", playerHand, true);
         dealer = new BlackjackPlayer("Dealer", dealerHand, true);
-        blackjackPlayerList = new ArrayList<>();
-        blackjackPlayerList.add(blackjackPlayer);
-        blackjackPlayerList.add(dealer);
-        game = new BlackjackGame(deck, blackjackPlayerList);
+        playerList = new ArrayList<>();
+        playerList.add(player);
+        playerList.add(dealer);
+        game = new BlackjackGame(deck, playerList);
         game.deal();
 
-        playerScoreView.setText("PLAYER 1 SCORE: " + game.getPlayerAtPosition(0).getHandValue());
+        if(game.getPlayerAtPosition(0).getHandValue() == 21) {
+            playerScoreView.setText("PLAYER 1: BLACKJACK!");
+        } else {
+            playerScoreView.setText("PLAYER 1 SCORE: " + game.getPlayerAtPosition(0).getHandValue());
+        }
     }
 
     public void onActionButtonClick(View view) {
         switch (view.getId()) {
             case R.id.playerHitButtonID:
-                Log.d("Blackjack", "BlackjackPlayer Hits");
+                Log.d("Blackjack", "Player Hits");
                 play(Action.HIT);
                 if (!game.getPlayerAtPosition(0).getIsPlayerActive()) {
                     dealerPlays();
                 }
                 break;
             case R.id.playerStandButtonID:
-                Log.d("Blackjack", "BlackjackPlayer Stands");
+                Log.d("Blackjack", "Player Stands");
                 play(Action.STAND);
                 dealerPlays();
                 break;
@@ -87,6 +91,7 @@ public class BlackjackGameActivity extends AppCompatActivity {
             game.dealCardToPlayer(0);
             playerScoreView.setText("PLAYER 1 SCORE: " + game.getPlayerAtPosition(0).getHandValue());
             if (game.getPlayerAtPosition(0).getHandValue() > 21) {
+                playerScoreView.setText("PLAYER 1 BUSTS!");
                 game.getPlayerAtPosition(0).setIsPlayerActive(false);
             }
         } else {
@@ -95,20 +100,23 @@ public class BlackjackGameActivity extends AppCompatActivity {
     }
 
     public void dealerPlays() {
-
-        while (game.getPlayerAtPosition(1).getIsPlayerActive()) {
-            if (game.getDealerAction() == Action.HIT) {
-                game.dealCardToPlayer(1);
-                dealerScoreView.setText("DEALER SCORE: " + game.getPlayerAtPosition(1).getHandValue());
-                if (game.getPlayerAtPosition(1).getHandValue() > 21) {
+        if (game.getPlayerAtPosition(1).getHandValue() == 21) {
+            dealerScoreView.setText("DEALER BLACKJACK!");
+        } else {
+            while (game.getPlayerAtPosition(1).getIsPlayerActive()) {
+                if (game.getDealerAction() == Action.HIT) {
+                    game.dealCardToPlayer(1);
+                    dealerScoreView.setText("DEALER SCORE: " + game.getPlayerAtPosition(1).getHandValue());
+                    if (game.getPlayerAtPosition(1).getHandValue() > 21) {
+                        dealerScoreView.setText("DEALER BUSTS!");
+                        game.getPlayerAtPosition(1).setIsPlayerActive(false);
+                    }
+                } else {
+                    dealerScoreView.setText("DEALER SCORE: " + game.getPlayerAtPosition(1).getHandValue());
                     game.getPlayerAtPosition(1).setIsPlayerActive(false);
                 }
-            } else {
-                dealerScoreView.setText("DEALER SCORE: " + game.getPlayerAtPosition(1).getHandValue());
-                game.getPlayerAtPosition(1).setIsPlayerActive(false);
             }
         }
-
         displayResult();
     }
 
