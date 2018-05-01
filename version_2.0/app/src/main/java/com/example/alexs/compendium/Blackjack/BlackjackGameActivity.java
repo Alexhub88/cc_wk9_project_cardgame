@@ -53,8 +53,8 @@ public class BlackjackGameActivity extends AppCompatActivity {
         deck = new BlackjackDeck();
         dealerHand = new BlackjackHand();
         playerHand = new BlackjackHand();
-        player = new BlackjackPlayer("Player 1", playerHand, true);
-        dealer = new BlackjackPlayer("Dealer", dealerHand, true);
+        player = new BlackjackPlayer("Player 1", playerHand, true, false);
+        dealer = new BlackjackPlayer("Dealer", dealerHand, true, false);
         playerList = new ArrayList<>();
         playerList.add(player);
         playerList.add(dealer);
@@ -62,6 +62,7 @@ public class BlackjackGameActivity extends AppCompatActivity {
         game.deal();
 
         if(game.getPlayerAtPosition(0).getHandValue() == 21) {
+            player.setHasBlackjack(true);
             playerScoreView.setText("PLAYER 1: BLACKJACK!");
         } else {
             playerScoreView.setText("PLAYER 1 SCORE: " + game.getPlayerAtPosition(0).getHandValue());
@@ -101,6 +102,7 @@ public class BlackjackGameActivity extends AppCompatActivity {
 
     public void dealerPlays() {
         if (game.getPlayerAtPosition(1).getHandValue() == 21) {
+            dealer.setHasBlackjack(true);
             dealerScoreView.setText("DEALER BLACKJACK!");
         } else {
             while (game.getPlayerAtPosition(1).getIsPlayerActive()) {

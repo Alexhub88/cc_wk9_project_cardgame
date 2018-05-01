@@ -32,11 +32,9 @@ public class BlackjackGame {
         BlackjackPlayer player = players.get(0);
         BlackjackPlayer dealer = players.get(1);
 
-        if (player.getHandValue() > 21) return dealer;
-
+        if (player.getHandValue() > 21 || dealer.getHasBlackjack() ==true) return dealer;
+        if (player.getHasBlackjack() == true && dealer.getHasBlackjack() ==false) return player;
         if (player.getHandValue() <= 21 && dealer.getHandValue() > 21) return player;
-
-        if (player.getHandValue() == 21 && dealer.getHandValue() == 21) return dealer;
 
         if (player.getHandValue() == dealer.getHandValue()){
             return null;
