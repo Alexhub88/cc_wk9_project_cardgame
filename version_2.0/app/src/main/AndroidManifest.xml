@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".HighLow.HighLowResultActivity" />
-        <activity android:name=".HighLow.HighLowGameActivity"></activity>
+        <activity android:name=".HighLow.HighLowGameActivity" />
+        <activity android:name=".Blackjack.BlackjackGameActivity"></activity>
     </application>
 
 </manifest>
