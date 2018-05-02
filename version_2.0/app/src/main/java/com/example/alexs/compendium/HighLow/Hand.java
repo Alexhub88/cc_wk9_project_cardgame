@@ -28,4 +28,9 @@ public class Hand {
         this.cards.add(card);
         this.value += card.getValue();
     }
+
+    public void resetHand(){
+        this.cards = new ArrayList<Card>();
+        value = 0;
+    }
 }

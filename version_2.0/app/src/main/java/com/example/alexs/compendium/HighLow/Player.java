@@ -25,4 +25,8 @@ public class Player {
     public void addCardToHand(Card card) {
         this.hand.addCard(card);
     }
+
+    public void resetPlayerHand(){
+        this.hand.resetHand();
+    }
 }

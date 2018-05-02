@@ -45,8 +45,8 @@ public class HighLowGameActivity extends AppCompatActivity {
         deck = new Deck();
         hand1 = new Hand();
         hand2 = new Hand();
-        player1 = new Player("Alice", hand1);
-        player2 = new Player("Bob", hand2);
+        player1 = new Player("Player 1", hand1);
+        player2 = new Player("Player 2", hand2);
         playerList = new ArrayList<>();
         playerList.add(player1);
         playerList.add(player2);
@@ -55,6 +55,8 @@ public class HighLowGameActivity extends AppCompatActivity {
 
     public void onPlayButtonClick(View view) {
 
+        player1.resetPlayerHand();
+        player2.resetPlayerHand();
         game.deal();
         winner = game.checkWinner();
 
