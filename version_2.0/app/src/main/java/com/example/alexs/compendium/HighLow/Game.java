@@ -12,13 +12,6 @@ public class Game {
         this.players = players;
     }
 
-    public void play() {
-        deal();
-        Player winner = checkWinner();
-
-    }
-
-
     public void deal(){
         for (Player player : players){
             for(int i = 0; i<2; i++) {

@@ -23,8 +23,14 @@ public class HighLowGameActivity extends AppCompatActivity {
     private Player player1;
     private Player player2;
     private Player winner;
-    private String displayGameResult;
+    private String player1Result;
+    private String player2Result;
+    private String displayWinner;
     private String winnerName;
+    private String player1Card1;
+    private String player1Card2;
+    private String player2Card1;
+    private String player2Card2;
     private ArrayList<Player> playerList;
     private Game game;
 
@@ -41,7 +47,7 @@ public class HighLowGameActivity extends AppCompatActivity {
         hand2 = new Hand();
         player1 = new Player("Alice", hand1);
         player2 = new Player("Bob", hand2);
-        playerList = new ArrayList<Player>();
+        playerList = new ArrayList<>();
         playerList.add(player1);
         playerList.add(player2);
         game = new Game(deck, playerList);
@@ -54,18 +60,33 @@ public class HighLowGameActivity extends AppCompatActivity {
 
         if(winner == player1) {
             winnerName = "Player 1";
-        } else {
+        } else if (winner == player2){
             winnerName = "Player 2";
+        } else {
+            winnerName = "Draw!";
         }
 
-        displayGameResult = "Player 1: " + player1.getHand().getCards().get(0).prettyName()
-                + ", " + player1.getHand().getCards().get(1).prettyName()
-                + "\n\n" + "Player 2: " + player2.getHand().getCards().get(0).prettyName()
-                + ", " + player2.getHand().getCards().get(1).prettyName()
-                + "\n\n\n" + winnerName.toUpperCase() + " WINS!!";
+        player1Card1 = player1.getHand().getCards().get(0).getImageFileName();
+        player1Card2 = player1.getHand().getCards().get(1).getImageFileName();
+        player2Card1 = player2.getHand().getCards().get(0).getImageFileName();
+        player2Card2 = player2.getHand().getCards().get(1).getImageFileName();
+
+        player1Result = "Player 1" + "\n" + player1.getHand().getCards().get(0).prettyName()
+                + ", " + player1.getHand().getCards().get(1).prettyName() + "\n" + "Score: " + player1.getHand().getHandValue();
+
+        player2Result = "Player 2" + "\n" + player2.getHand().getCards().get(0).prettyName()
+                + ", " + player2.getHand().getCards().get(1).prettyName()+ "\n" + "Score: " + player2.getHand().getHandValue();
+
+        displayWinner = winnerName.toUpperCase() + " WINS!!";
 
         Intent intent = new Intent(this, HighLowResultActivity.class);
-        intent.putExtra("displayGameResult", displayGameResult);
+        intent.putExtra("player1Card1", player1Card1);
+        intent.putExtra("player1Card2", player1Card2);
+        intent.putExtra("player2Card1", player2Card1);
+        intent.putExtra("player2Card2", player2Card2);
+        intent.putExtra("player1Result", player1Result);
+        intent.putExtra("player2Result", player2Result);
+        intent.putExtra("displayWinner", displayWinner);
         startActivity(intent);
 
     }

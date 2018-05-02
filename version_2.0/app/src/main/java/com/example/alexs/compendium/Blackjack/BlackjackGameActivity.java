@@ -6,28 +6,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-
 import com.example.alexs.compendium.R;
-
-
 import java.util.ArrayList;
 
 public class BlackjackGameActivity extends AppCompatActivity {
 
-    private TextView dealerTextView;
     private TextView dealerScoreView;
-    private TextView dealerScoreTitle;
-
     private TextView playerTextView;
     private TextView playerScoreView;
-    private TextView playerScoreTitle;
-
-    private TextView winnerTextView;
     private TextView winnerResultView;
-
-    private Button playerStandButton;
-    private Button playerHitButton;
 
     private BlackjackDeck deck;
     private BlackjackHand dealerHand;
@@ -47,8 +34,6 @@ public class BlackjackGameActivity extends AppCompatActivity {
         playerTextView = findViewById(R.id.playerTextViewID);
         playerScoreView = findViewById(R.id.playerScoreViewID);
         winnerResultView = findViewById(R.id.winnerResultViewID);
-        playerStandButton = findViewById(R.id.playerStandButtonID);
-        playerHitButton = findViewById(R.id.playerHitButtonID);
 
         deck = new BlackjackDeck();
         dealerHand = new BlackjackHand();
@@ -59,6 +44,7 @@ public class BlackjackGameActivity extends AppCompatActivity {
         playerList.add(player);
         playerList.add(dealer);
         game = new BlackjackGame(deck, playerList);
+
         game.deal();
 
         if(game.getPlayerAtPosition(0).getHandValue() == 21) {
@@ -101,6 +87,7 @@ public class BlackjackGameActivity extends AppCompatActivity {
     }
 
     public void dealerPlays() {
+
         if (game.getPlayerAtPosition(1).getHandValue() == 21) {
             dealer.setHasBlackjack(true);
             dealerScoreView.setText("DEALER BLACKJACK!");
@@ -119,20 +106,7 @@ public class BlackjackGameActivity extends AppCompatActivity {
                 }
             }
         }
-        displayResult();
+        winnerResultView.setText(game.displayResult());
     }
 
-    public void displayResult(){
-        String resultString;
-
-        if (game.checkWinner() == null){
-            resultString = "RESULT: " +"\n\n" +"PUSH (Draw)!";
-        } else { if (game.checkWinner() == game.getPlayerAtPosition(0)) {
-            resultString = "RESULT: " +"\n\n" +"PLAYER 1 WINS!!";
-            } else {
-                resultString = "RESULT:" +"\n\n" + " DEALER WINS!!";
-            }
-        }
-        winnerResultView.setText(resultString);
-    }
 }

@@ -59,5 +59,20 @@ public class BlackjackGame {
         players.set(position, player);
     }
 
+    public String displayResult(){
+        String resultString;
+
+        if (checkWinner() == null){
+            resultString = "RESULT: " +"\n\n" +"PUSH (DRAW)!";
+        } else {
+            if (checkWinner() == getPlayerAtPosition(0)) {
+            resultString = "RESULT: " +"\n\n" +"PLAYER 1 WINS!!";
+            } else {
+                resultString = "RESULT:" +"\n\n" + " DEALER WINS!!";
+            }
+        }
+        return resultString;
+    }
+
 
 }
