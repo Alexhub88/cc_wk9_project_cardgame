@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".HighLow.HighLowResultActivity" />
         <activity android:name=".HighLow.HighLowGameActivity" />
-        <activity android:name=".Blackjack.BlackjackGameActivity"></activity>
+        <activity android:name=".Blackjack.BlackjackGameActivity" />
+        <activity android:name=".Blackjack.DisplayCardsActivity"></activity>
     </application>
 
 </manifest>

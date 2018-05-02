@@ -1,5 +1,6 @@
 package com.example.alexs.compendium.Blackjack;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,7 +49,7 @@ public class BlackjackGameActivity extends AppCompatActivity {
         game.deal();
 
         if(game.getPlayerAtPosition(0).getHandValue() == 21) {
-            player.setHasBlackjack(true);
+            game.getPlayerAtPosition(0).setHasBlackjack(true);
             playerScoreView.setText("PLAYER 1: BLACKJACK!");
         } else {
             playerScoreView.setText("PLAYER 1 SCORE: " + game.getPlayerAtPosition(0).getHandValue());
@@ -84,12 +85,13 @@ public class BlackjackGameActivity extends AppCompatActivity {
         } else {
             game.getPlayerAtPosition(0).setIsPlayerActive(false);
         }
+
     }
 
     public void dealerPlays() {
 
         if (game.getPlayerAtPosition(1).getHandValue() == 21) {
-            dealer.setHasBlackjack(true);
+            game.getPlayerAtPosition(1).setHasBlackjack(true);
             dealerScoreView.setText("DEALER BLACKJACK!");
         } else {
             while (game.getPlayerAtPosition(1).getIsPlayerActive()) {

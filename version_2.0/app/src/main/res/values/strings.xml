@@ -5,4 +5,6 @@
     <string name="instructions">To play: click the button below.\n\nThis will deal two random cards to each player, calculate the hand values and decide the winner.</string>
     <string name="play_button_text">Play High Low Game</string>
     <string name="result_title">WINNER:</string>
+    <string name="compendium_main_screen">Choose from High Low Game or Blackjack (top right Menu)</string>
+    <string name="compendium_title">Card Games Compendium</string>
 </resources>

@@ -63,12 +63,12 @@ public class BlackjackGame {
         String resultString;
 
         if (checkWinner() == null){
-            resultString = "RESULT: " +"\n\n" +"PUSH (DRAW)!";
+            resultString = "PUSH (DRAW)!";
         } else {
             if (checkWinner() == getPlayerAtPosition(0)) {
-            resultString = "RESULT: " +"\n\n" +"PLAYER 1 WINS!!";
+            resultString = "PLAYER 1 WINS!!";
             } else {
-                resultString = "RESULT:" +"\n\n" + " DEALER WINS!!";
+                resultString = "DEALER WINS!!";
             }
         }
         return resultString;
