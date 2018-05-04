@@ -94,7 +94,7 @@ public class BlackjackGameActivity extends AppCompatActivity {
         setCardImage(dealerFirstRound1, dealerFirstRoundCard1);
         dealerFirstRoundCard2 = "facedown";
         setCardImage(dealerFirstRound2, dealerFirstRoundCard2);
-        dealerFirstRoundCard2 = game.getPlayerAtPosition(1).getHand().getCards().get(1).getImageFileName();
+
         dealerCurrent.setVisibility(View.GONE);
     }
 
@@ -108,7 +108,6 @@ public class BlackjackGameActivity extends AppCompatActivity {
                 int currentHandSize = game.getPlayerAtPosition(0).getHand().getCards().size();
                 playerCurrentCard = game.getPlayerAtPosition(0).getHand().getCards().get(currentHandSize - 1).getImageFileName();
                 setCardImage(p1Current, playerCurrentCard);   //Display current card
-
                 if (!game.getPlayerAtPosition(0).getIsPlayerActive()) { //i.e. Player's turn is over
                     dealerPlays();
                 }
@@ -144,6 +143,8 @@ public class BlackjackGameActivity extends AppCompatActivity {
             dealer.setHasBlackjack(true);
             game.setPlayerAtPosition(1, dealer);
             dealerScoreView.setText("DEALER BLACKJACK!");
+            dealerFirstRoundCard2 = game.getPlayerAtPosition(1).getHand().getCards().get(1).getImageFileName();
+            setCardImage(dealerFirstRound2, dealerFirstRoundCard2);
         } else {
             while (game.getPlayerAtPosition(1).getIsPlayerActive()) {
                 if (game.getDealerAction() == Action.HIT) {
@@ -151,11 +152,9 @@ public class BlackjackGameActivity extends AppCompatActivity {
                     dealerScoreView.setText("DEALER SCORE: " + game.getPlayerAtPosition(1).getHandValue());
                     if (game.getPlayerAtPosition(1).getHandValue() > 21) {
                         dealerScoreView.setText("DEALER SCORE: " + game.getPlayerAtPosition(1).getHandValue());
-
                         dealerBust.setText("DEALER BUSTS!");   //Dealer Busts
                         game.getPlayerAtPosition(1).setIsPlayerActive(false);
                     }
-                    setCardImage(dealerFirstRound2, dealerFirstRoundCard2);
                     int currentHandSize = game.getPlayerAtPosition(1).getHand().getCards().size();
                     dealerCurrentCard = game.getPlayerAtPosition(1).getHand().getCards().get(currentHandSize - 1).getImageFileName();
                     dealerCurrent.setVisibility(View.VISIBLE);
@@ -165,7 +164,11 @@ public class BlackjackGameActivity extends AppCompatActivity {
                     game.getPlayerAtPosition(1).setIsPlayerActive(false);  //Dealer turn ends
                 }
             }
+            dealerFirstRoundCard2 = game.getPlayerAtPosition(1).getHand().getCards().get(1).getImageFileName();
+            setCardImage(dealerFirstRound2, dealerFirstRoundCard2);
+
         }
+
         winnerResultView.setText(game.displayResult());  //Check winner and show result
     }
 
