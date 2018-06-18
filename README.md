@@ -1,6 +1,6 @@
 # Java/Android Card Games Compendium
 
-## Description:
+## Overview:
 
 Compendium is a mobile game application produced using Java and Android. Using the Java language to model the logic for the
 games,and the Android IDE as the development environment, it allows the user to play two card games, the High/Low Card Game
@@ -15,7 +15,7 @@ Goal: Create a card game in Android.
 
 HINT Think of the lessons where we wrote regular Java classes in Android Studio, ran unit tests on them, and then used them in our Eight Ball app.
 
-## MVP
+## MVP:
 
 The game does not need to have much or any interaction. The aim is to display the results of the Java logic already written. For example, if you had two players being dealt two cards each your screen might look something like:
 
@@ -24,11 +24,12 @@ The game does not need to have much or any interaction. The aim is to display th
 
   Player 1 Wins!
   
-## Project Extensions
+## Project Extensions:
 
-Possibly add another card game
-Improve the UI
+* Possibly add another card game
+* Improve the UI
 
-## To run the application
+## To Run the Application:
+
 * Open Google Play
 * Go to the URL
