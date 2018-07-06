@@ -31,5 +31,14 @@ The game does not need to have much or any interaction. The aim is to display th
 
 ## To Run the Application:
 
-* Open Google Play
-* Go to the URL
+A user may clone the repository to a local network folder using the 'git clone' command:
+
+* Navigate to a local network folder using Terminal.
+* Execute the Terminal command: 'git clone git@github.com:Alexhub88/cc_wk9_project_cardgame.git' in that folder.
+* Open Android Studio.
+* Select 'Open an existing Android Studio project'.
+* Using the browser in Android Studio, navigate to the 'Final' folder one level below the 'cc_wk9_project_cardgame' folder.
+* Click 'Open'.
+* Once the project has opened, click the 'Play' button at the top of the central menu bar.
+* The mobile emulator will start and the Compendium opening screen will appear.
+* Use the menu in the top right to select which game to play: the High/Low Game or Blackjack.
